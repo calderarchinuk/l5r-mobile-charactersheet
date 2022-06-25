@@ -4,6 +4,36 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+public class TechniqueDataHolder
+{
+	public string guid;
+	public TechniqueData data;
+	public bool foldout;
+	public bool darkBackground;
+	public TechniqueDataHolder(TechniqueData data, bool darkBackground, bool defaultVisible)
+	{
+		guid = System.Guid.NewGuid().ToString();
+		this.data = data;
+		this.darkBackground = darkBackground;
+		foldout = defaultVisible;
+	}
+}
+
+public class DistinctionDataHolder
+{
+	public string guid;
+	public DistinctionData data;
+	public bool foldout;
+	public bool darkBackground;
+	public DistinctionDataHolder(DistinctionData data, bool darkBackground, bool defaultVisible)
+	{
+		guid = System.Guid.NewGuid().ToString();
+		this.data = data;
+		this.darkBackground = darkBackground;
+		foldout = defaultVisible;
+	}
+}
+
 public class CharacterEditorWindow : EditorWindow
 {
 	[MenuItem("Tools/Character Editor")]
@@ -12,6 +42,9 @@ public class CharacterEditorWindow : EditorWindow
 		CharacterEditorWindow window = (CharacterEditorWindow)EditorWindow.GetWindow(typeof(CharacterEditorWindow));
 		window.Show();
 	}
+
+	List<TechniqueDataHolder> displayTechniques = new List<TechniqueDataHolder>();
+	List<DistinctionDataHolder> displayDistinctions = new List<DistinctionDataHolder>();
 
 	CharacterData characterData;
 	bool skillFoldOut;
@@ -23,6 +56,8 @@ public class CharacterEditorWindow : EditorWindow
 	void OnGUI()
 	{
 		GUI.skin.textArea.wordWrap = true;
+		GUIStyle foldoutStyle = new GUIStyle(EditorStyles.foldout);
+		foldoutStyle.fixedWidth = 5;
 
 		//new/load options
 		if (characterData == null)
@@ -92,27 +127,47 @@ public class CharacterEditorWindow : EditorWindow
 		techniquesFoldOut = EditorGUILayout.Foldout(techniquesFoldOut,"Techniques");
 		if (techniquesFoldOut && GUILayout.Button("New Technique"))
 		{
-			characterData.Techniques.Add(new TechniqueData("","","","",Ring.None));
+			var newTech = new TechniqueData("","","","",Ring.None);
+			characterData.Techniques.Add(newTech);
+			displayTechniques.Add(new TechniqueDataHolder(newTech,characterData.Techniques.Count%2==0,true));
 		}
 		GUILayout.EndHorizontal();
 		if (techniquesFoldOut)
 		{
-			for(int i = 0 ;i<characterData.Techniques.Count;i++)
+			EditorGUI.indentLevel++;
+			for(int i = 0 ;i<displayTechniques.Count;i++)
 			{
-				EditorGUILayout.LabelField("",GUI.skin.horizontalSlider);
+				//EditorGUILayout.LabelField("",GUI.skin.horizontalSlider);
 				GUILayout.BeginHorizontal();
-				if (GUILayout.Button("Delete",GUILayout.Width(50))){characterData.Techniques.RemoveAt(i);return;}
-				GUILayout.Label("name");
-				characterData.Techniques[i].Name = GUILayout.TextField(characterData.Techniques[i].Name);
-				characterData.Techniques[i].Ring = (Ring)EditorGUILayout.EnumPopup(characterData.Techniques[i].Ring);
+				displayTechniques[i].foldout = EditorGUILayout.Foldout(displayTechniques[i].foldout,"");
+				characterData.Techniques[i].Name = GUILayout.TextField(characterData.Techniques[i].Name,GUILayout.Width(100));
+				characterData.Techniques[i].Ring = (Ring)EditorGUILayout.EnumPopup(characterData.Techniques[i].Ring,GUILayout.Width(50));
+				EditorGUILayout.LabelField("",GUI.skin.horizontalSlider,GUILayout.ExpandWidth(true));
+
+				if (GUILayout.Button("Delete",GUILayout.Width(50)))
+				{
+					var removeTech = displayTechniques.Find(delegate(TechniqueDataHolder obj) {
+						return obj.data == characterData.Techniques[i];
+					});
+					if (removeTech != null)
+					{
+						displayTechniques.Remove(removeTech);
+						characterData.Techniques.RemoveAt(i);return;
+					}
+				}
 				GUILayout.EndHorizontal();
-				GUILayout.Label("activation");
-				characterData.Techniques[i].Activation = GUILayout.TextArea(characterData.Techniques[i].Activation);
-				GUILayout.Label("effect");
-				characterData.Techniques[i].Effect = GUILayout.TextArea(characterData.Techniques[i].Effect);
-				GUILayout.Label("opportunities");
-				characterData.Techniques[i].Opportunity = GUILayout.TextArea(characterData.Techniques[i].Opportunity);
+
+				if (displayTechniques[i].foldout)
+				{
+					GUILayout.Label("Activation");
+					characterData.Techniques[i].Activation = GUILayout.TextArea(characterData.Techniques[i].Activation);
+					GUILayout.Label("Effect");
+					characterData.Techniques[i].Effect = GUILayout.TextArea(characterData.Techniques[i].Effect);
+					GUILayout.Label("Opportunities");
+					characterData.Techniques[i].Opportunity = GUILayout.TextArea(characterData.Techniques[i].Opportunity);
+				}
 			}
+			EditorGUI.indentLevel--;
 		}
 
 		//distinctions
@@ -120,23 +175,40 @@ public class CharacterEditorWindow : EditorWindow
 		distinctionsFoldOut = EditorGUILayout.Foldout(distinctionsFoldOut,"Distinctions");
 		if (distinctionsFoldOut && GUILayout.Button("New Distinction"))
 		{
-			characterData.Distinctions.Add(new DistinctionData("",Ring.None,"",DistinctionType.Distinction));
+			var newDist = new DistinctionData("",Ring.None,"",DistinctionType.Distinction);
+			characterData.Distinctions.Add(newDist);
+			displayDistinctions.Add(new DistinctionDataHolder(newDist,characterData.Distinctions.Count%2==0,true));
 		}
 		GUILayout.EndHorizontal();
 		if (distinctionsFoldOut)
 		{
-			for(int i = 0 ;i<characterData.Distinctions.Count;i++)
+			EditorGUI.indentLevel++;
+			for(int i = 0 ;i<displayDistinctions.Count;i++)
 			{
-				EditorGUILayout.LabelField("",GUI.skin.horizontalSlider);
 				GUILayout.BeginHorizontal();
-				if (GUILayout.Button("Delete",GUILayout.Width(50))){characterData.Distinctions.RemoveAt(i);return;}
-				GUILayout.Label("name");
-				characterData.Distinctions[i].Name = GUILayout.TextField(characterData.Distinctions[i].Name);
-				characterData.Distinctions[i].Ring = (Ring)EditorGUILayout.EnumPopup(characterData.Distinctions[i].Ring);
+				displayDistinctions[i].foldout = EditorGUILayout.Foldout(displayDistinctions[i].foldout,"");
+				characterData.Distinctions[i].Name = GUILayout.TextField(characterData.Distinctions[i].Name,GUILayout.Width(100));
+				characterData.Distinctions[i].Ring = (Ring)EditorGUILayout.EnumPopup(characterData.Distinctions[i].Ring,GUILayout.Width(50));
+				GUILayout.FlexibleSpace();
+				if (GUILayout.Button("Delete",GUILayout.Width(50)))
+				{
+					var removeTech = displayDistinctions.Find(delegate(DistinctionDataHolder obj) {
+						return obj.data == characterData.Distinctions[i];
+					});
+					if (removeTech != null)
+					{
+						displayDistinctions.Remove(removeTech);
+						characterData.Distinctions.RemoveAt(i);return;
+					}
+				}
 				GUILayout.EndHorizontal();
-				GUILayout.Label("description");
-				characterData.Distinctions[i].Description = GUILayout.TextArea(characterData.Distinctions[i].Description);
+				if (displayDistinctions[i].foldout)
+				{
+					GUILayout.Label("Description");
+					characterData.Distinctions[i].Description = GUILayout.TextArea(characterData.Distinctions[i].Description);
+				}
 			}
+			EditorGUI.indentLevel--;
 		}
 
 		//armor
@@ -154,38 +226,50 @@ public class CharacterEditorWindow : EditorWindow
 		GUILayout.EndHorizontal();
 		if (itemsFoldOut)
 		{
+			//header
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("name",GUILayout.Width(100));
+			GUILayout.Label("defense",GUILayout.Width(50));
+			GUILayout.EndHorizontal();
+
 			for(int i = 0 ;i<characterData.Armor.Count;i++)
 			{
 				GUILayout.BeginHorizontal();
-				if (GUILayout.Button("Delete",GUILayout.Width(50))){characterData.Armor.RemoveAt(i);return;}
-				GUILayout.Label("name");
-				characterData.Armor[i].Name = GUILayout.TextField(characterData.Armor[i].Name);
-				GUILayout.Label("defense");
-				characterData.Armor[i].Defense = EditorGUILayout.IntField(characterData.Armor[i].Defense);
+				characterData.Armor[i].Name = GUILayout.TextField(characterData.Armor[i].Name,GUILayout.Width(100));
+				characterData.Armor[i].Defense = EditorGUILayout.IntField(characterData.Armor[i].Defense,GUILayout.Width(50));
 				GUILayout.BeginVertical();
 				GUIx.StringList("keywords",characterData.Armor[i].Keywords);
 				GUILayout.EndVertical();
+				if (GUILayout.Button("Delete",GUILayout.Width(50))){characterData.Armor.RemoveAt(i);return;}
 				GUILayout.EndHorizontal();
 			}
+
 			EditorGUILayout.LabelField("",GUI.skin.horizontalSlider);
+
+			//header
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("name",GUILayout.Width(50));
+			GUILayout.Label("damage",GUILayout.Width(50));
+			GUILayout.Label("deadliness",GUILayout.Width(50));
+			GUILayout.Label("range",GUILayout.Width(50));
+			GUILayout.Label("grips",GUILayout.Width(50));
+			GUILayout.Label("damage",GUILayout.Width(50));
+			GUILayout.EndHorizontal();
+
 			for(int i = 0 ;i<characterData.Weapons.Count;i++)
 			{
-
 				GUILayout.BeginHorizontal();
-				if (GUILayout.Button("Delete",GUILayout.Width(50))){characterData.Weapons.RemoveAt(i);return;}
-				GUILayout.Label("name");
-				characterData.Weapons[i].Name = GUILayout.TextField(characterData.Weapons[i].Name);
-				characterData.Weapons[i].Damage = EditorGUILayout.IntField("damage",characterData.Weapons[i].Damage);
 
-				GUILayout.Label("deadliness");
-				characterData.Weapons[i].Deadliness = GUILayout.TextField(characterData.Weapons[i].Deadliness);
-				GUILayout.Label("range");
-				characterData.Weapons[i].Range = GUILayout.TextField(characterData.Weapons[i].Range);
-				GUILayout.Label("grips");
-				characterData.Weapons[i].Grips = GUILayout.TextField(characterData.Weapons[i].Grips);
+				characterData.Weapons[i].Name = GUILayout.TextField(characterData.Weapons[i].Name,GUILayout.Width(50));
+				characterData.Weapons[i].Damage = EditorGUILayout.IntField(characterData.Weapons[i].Damage,GUILayout.Width(50));
+
+				characterData.Weapons[i].Deadliness = GUILayout.TextField(characterData.Weapons[i].Deadliness,GUILayout.Width(50));
+				characterData.Weapons[i].Range = GUILayout.TextField(characterData.Weapons[i].Range,GUILayout.Width(50));
+				characterData.Weapons[i].Grips = GUILayout.TextField(characterData.Weapons[i].Grips,GUILayout.Width(50));
 				GUILayout.BeginVertical();
 				GUIx.StringList("keywords",characterData.Weapons[i].Keywords);
 				GUILayout.EndVertical();
+				if (GUILayout.Button("Delete",GUILayout.Width(50))){characterData.Weapons.RemoveAt(i);return;}
 				GUILayout.EndHorizontal();
 			}
 
@@ -270,6 +354,22 @@ public class CharacterEditorWindow : EditorWindow
 		settings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects;
 		string rawData = System.IO.File.ReadAllText(filepath);
 		characterData = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(rawData);
+
+		displayTechniques.Clear();
+		int id = 0;
+		foreach(var v in characterData.Techniques)
+		{
+			id ++;
+			displayTechniques.Add(new TechniqueDataHolder(v,id%2==0,false));
+		}
+
+		displayDistinctions.Clear();
+		id = 0;
+		foreach(var v in characterData.Distinctions)
+		{
+			id ++;
+			displayDistinctions.Add(new DistinctionDataHolder(v,id%2==0,false));
+		}
 	}
 
 	public void SaveCharacterData(string characterName)
