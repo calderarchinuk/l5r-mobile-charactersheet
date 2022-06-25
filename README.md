@@ -4,14 +4,12 @@ A simple character sheet for Legend of the 5 Rings RPG. Reads json files from th
 This project does **not** contain a character generator or and game content (rules, etc)
 
 ## TODO
-* fix android icon and name
 * add unity editor character sheet window to spit out valid json
 * fix other resolutions
 * add directory path option for loading characters on main menu
 
-* saving. button? losing app focus? text confirmed?
+* improve saving. currently on screen change, should be on field change or manual save button
 * technique spacing. hide sections that are empty. scale to fit long descriptions
-* buttons are too small
 * clean up panels. make it easier to recolour
 * recolour options on main menu?
 * support cherry blossom app by importing xml files

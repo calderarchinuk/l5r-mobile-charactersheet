@@ -26,13 +26,13 @@ public class HeaderCanvas : CanvasBase
 	public TextMeshProUGUI VoidRing;
 
 	public TextMeshProUGUI MaxFatigue;
-	public TextMeshProUGUI CurrentFatigue;
+	public TMP_InputField CurrentFatigue;
 
 	public TextMeshProUGUI MaxStrife;
-	public TextMeshProUGUI CurrentStrife;
+	public TMP_InputField CurrentStrife;
 
 	public TextMeshProUGUI MaxVoid;
-	public TextMeshProUGUI CurrentVoid;
+	public TMP_InputField CurrentVoid;
 
 	public override void GameInstance_OnGameStateChanged (GameState state)
 	{
@@ -55,6 +55,7 @@ public class HeaderCanvas : CanvasBase
 			MaxFatigue.text = "/"+GameInstance.Instance.LoadedCharacterData.Endurance.ToString();
 			CurrentFatigue.text = GameInstance.Instance.LoadedCharacterData.CurrentFatigue.ToString();
 
+
 			MaxStrife.text = "/"+GameInstance.Instance.LoadedCharacterData.Composure.ToString();
 			CurrentStrife.text = GameInstance.Instance.LoadedCharacterData.CurrentStrife.ToString();
 
@@ -65,5 +66,20 @@ public class HeaderCanvas : CanvasBase
 		{
 			SetVisible(false);
 		}
+	}
+
+	//todo need to set input text values back to character data
+
+	public void SetFatigue(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.CurrentFatigue = int.Parse(str);
+	}
+	public void SetStrife(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.CurrentStrife = int.Parse(str);
+	}
+	public void SetVoid(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.CurrentVoid = int.Parse(str);
 	}
 }

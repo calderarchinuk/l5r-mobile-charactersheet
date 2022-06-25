@@ -14,14 +14,28 @@ public class TechniqueDescription : MonoBehaviour
 	public Image Ring;
 	public TextMeshProUGUI TechName;
 	public TextMeshProUGUI TechAction;
+	public TextMeshProUGUI TechActionTitle;
 	public TextMeshProUGUI TechEffect;
+	public TextMeshProUGUI TechEffectTitle;
 	public TextMeshProUGUI TechOpportunity;
+	public TextMeshProUGUI TechOpportunityTitle;
 
 	public void SetTechnique(TechniqueData data)
 	{
-		if (data.ActionTechnique)
+		if (string.IsNullOrEmpty(data.Activation))
 		{
-			//display action
+			TechActionTitle.gameObject.SetActive(false);
+			TechAction.gameObject.SetActive(false);
+		}
+		if (string.IsNullOrEmpty(data.Effect))
+		{
+			TechEffectTitle.gameObject.SetActive(false);
+			TechEffect.gameObject.SetActive(false);
+		}
+		if (string.IsNullOrEmpty(data.Opportunity))
+		{
+			TechOpportunityTitle.gameObject.SetActive(false);
+			TechOpportunity.gameObject.SetActive(false);
 		}
 
 		TechName.text = data.Name;

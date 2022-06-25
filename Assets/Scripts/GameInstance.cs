@@ -40,7 +40,7 @@ public class GameInstance : MonoBehaviour
 		try
 		{
 			#if UNITY_EDITOR
-			DOWNLOADDIR = Application.streamingAssetsPath;
+			DOWNLOADDIR = Application.streamingAssetsPath+"/";
 			#endif
 
 			if (Directory.Exists(DOWNLOADDIR))
@@ -141,6 +141,8 @@ public class GameInstance : MonoBehaviour
 
 	public void Button_SetScreen(string name)
 	{
+		if (LoadedCharacterData != null)
+			WriteToDisk(LoadedCharacterData);
 		//tech, roleplay, items, skills
 		Techniques.SetVisible(false);
 		Roleplay.SetVisible(false);

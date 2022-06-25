@@ -62,4 +62,22 @@ public class ItemCanvas : CanvasBase
 
 		OtherItems.text = GameInstance.Instance.LoadedCharacterData.OtherItems;
 	}
+
+	public void SetKoku(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.CurrentKoku = int.Parse(str);
+	}
+	public void SetBu(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.CurrentBu = int.Parse(str);
+	}
+	public void SetZeni(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.CurrentZeni = int.Parse(str);
+	}
+	public void SetOther(string str)
+	{
+		GameInstance.Instance.LoadedCharacterData.OtherItems = str;
+	}
+
 }

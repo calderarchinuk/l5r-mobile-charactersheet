@@ -19,7 +19,7 @@ public class ProjectUtilities : MonoBehaviour
 	{
 		//replace $earth, $opportunity, $strife, etc with <sprite=2> as necessary
 
-		inText = inText.Replace("$air","<sprite=2>");
+		inText = inText.Replace("$air","<sprite=3>");
 		inText = inText.Replace("$earth","<sprite=0>");
 		inText = inText.Replace("$fire","<sprite=1>");
 		inText = inText.Replace("$water","<sprite=2>");
