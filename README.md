@@ -1,7 +1,7 @@
 # L5R mobile charactersheet
 A simple character sheet for Legend of the 5 Rings RPG. Reads json files from the downloads folder
 
-This project does **not** contain a character generator or and game content (rules, etc)
+This project does **not** contain a character generator or game content (rules, etc)
 
 ## TODO
 * add unity editor character sheet window to spit out valid json

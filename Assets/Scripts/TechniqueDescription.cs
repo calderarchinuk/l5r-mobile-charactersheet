@@ -20,6 +20,48 @@ public class TechniqueDescription : MonoBehaviour
 	public TextMeshProUGUI TechOpportunity;
 	public TextMeshProUGUI TechOpportunityTitle;
 
+	float preferredHeight;
+	[ContextMenu("calculate height")]
+	void CalculateHeight()
+	{
+		float space = 20;
+
+		float preferredChildHeight = 160; //header
+
+		if (TechAction.gameObject.activeInHierarchy)
+		{
+			preferredChildHeight += TechAction.preferredHeight;
+			preferredChildHeight += space;
+		}
+		if (TechActionTitle.gameObject.activeInHierarchy)
+		{
+			preferredChildHeight += TechActionTitle.preferredHeight;
+			preferredChildHeight += space;
+		}
+		if (TechEffect.gameObject.activeInHierarchy)
+		{
+			preferredChildHeight += TechEffect.preferredHeight;
+			preferredChildHeight += space;
+		}
+		if (TechEffectTitle.gameObject.activeInHierarchy)
+		{
+			preferredChildHeight += TechEffectTitle.preferredHeight;
+			preferredChildHeight += space;
+		}
+		if (TechOpportunity.gameObject.activeInHierarchy)
+		{
+			preferredChildHeight += TechOpportunity.preferredHeight;
+			preferredChildHeight += space;
+		}
+		if (TechOpportunityTitle.gameObject.activeInHierarchy)
+		{
+			preferredChildHeight += TechOpportunityTitle.preferredHeight;
+			preferredChildHeight += space;
+		}
+
+		preferredHeight = preferredChildHeight;
+	}
+
 	public void SetTechnique(TechniqueData data)
 	{
 		if (string.IsNullOrEmpty(data.Activation))
@@ -44,6 +86,7 @@ public class TechniqueDescription : MonoBehaviour
 		TechOpportunity.text = ProjectUtilities.ParseText(data.Opportunity);
 		Ring.sprite = ProjectUtilities.GetRingSprite(data.Ring);
 		SetCollapsed(true);
+		CalculateHeight();
 	}
 
 	public void Button_ToggleCollapse()
@@ -57,7 +100,7 @@ public class TechniqueDescription : MonoBehaviour
 		//160 collapsed
 		//800 uncollapsed
 
-		float targetSize = 800;
+		float targetSize = preferredHeight;
 		if (flat)
 		{
 			targetSize = 160;
