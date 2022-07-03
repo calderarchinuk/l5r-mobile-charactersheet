@@ -39,6 +39,15 @@ public class GameInstance : MonoBehaviour
 	string referencePath;
 	List<ReferenceData> referenceData;
 
+	public void SetPath(string path)
+	{
+		DOWNLOADDIR = path;
+	}
+	public string GetPath()
+	{
+		return DOWNLOADDIR;
+	}
+
 	public string[] GetFiles()
 	{
 		try
@@ -121,6 +130,7 @@ public class GameInstance : MonoBehaviour
 		Skills.SetVisible(false);
 		Reference.SetVisible(false);
 
+		MainMenu.Initialize();
 		MainMenu.SetVisible(true);
 		MainMenu.DisplayCharacterList();
 	}
