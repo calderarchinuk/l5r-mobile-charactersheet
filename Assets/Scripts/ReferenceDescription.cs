@@ -4,9 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-//the ui to display the technique data
+//the ui to display the reference data
 
-public class DistinctionDescription : MonoBehaviour
+public class ReferenceDescription : MonoBehaviour
 {
 	bool collapsed = true;
 	public Image frame;
@@ -31,7 +31,7 @@ public class DistinctionDescription : MonoBehaviour
 		preferredHeight = preferredChildHeight;
 	}
 
-	public void SetData(DistinctionData data)
+	public void SetData(ReferenceData data)
 	{
 		Name.text = data.Name;
 		Description.text = ProjectUtilities.ParseText(data.Description);

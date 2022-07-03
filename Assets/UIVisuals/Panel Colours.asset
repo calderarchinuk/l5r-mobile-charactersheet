@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377fff130b29f483a931345785ef4e26, type: 3}
+  m_Name: Panel Colours
+  m_EditorClassIdentifier: 
+  MainMenu: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 1}
+  Header: {r: 0.21176472, g: 0.21176472, b: 0.21176472, a: 1}
+  Glory: {r: 0.33088237, g: 0.33088237, b: 0.33088237, a: 1}
+  Techniques: {r: 0.14901961, g: 0.20392159, b: 0.25882354, a: 1}
+  Roleplay: {r: 0.14901961, g: 0.20392159, b: 0.25882354, a: 1}
+  Skills: {r: 0.14726165, g: 0.203988, b: 0.2588235, a: 1}
+  ItemsWeapons: {r: 0.25882354, g: 0.1764706, b: 0.1764706, a: 1}
+  ItemsArmour: {r: 0.2588235, g: 0.1758215, b: 0.1758215, a: 1}
+  ItemsOther: {r: 0.25882354, g: 0.1764706, b: 0.1764706, a: 1}
+  ItemsBackground: {r: 0, g: 0, b: 0, a: 1}
+  Expandable: {r: 0, g: 0, b: 0, a: 0}
+  Text: {r: 0, g: 0, b: 0, a: 0}
+  ExpandableText: {r: 0, g: 0, b: 0, a: 0}

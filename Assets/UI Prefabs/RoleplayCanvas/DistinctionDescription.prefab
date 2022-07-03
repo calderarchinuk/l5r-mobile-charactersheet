@@ -631,6 +631,7 @@ MonoBehaviour:
   frame: {fileID: 114035337440158282}
   Ring: {fileID: 114342542337215974}
   Name: {fileID: 114375374324951396}
+  DescriptionTitle: {fileID: 114828673754186948}
   Description: {fileID: 114964686613261116}
 --- !u!114 &114964686613261116
 MonoBehaviour:
@@ -727,7 +728,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}

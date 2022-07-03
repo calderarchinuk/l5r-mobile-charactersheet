@@ -22,6 +22,7 @@ public class GameInstance : MonoBehaviour
 	public RoleplayCanvas Roleplay;
 	public HeaderCanvas Header;
 	public SkillCanvas Skills;
+	public QuickReferenceCanvas Reference;
 
 	public GameState GameState = GameState.Menu;
 
@@ -34,6 +35,9 @@ public class GameInstance : MonoBehaviour
 
 	static string DOWNLOADDIR = "/sdcard/download/L5R/";
 	public TextMeshProUGUI debuggui;
+
+	string referencePath;
+	List<ReferenceData> referenceData;
 
 	public string[] GetFiles()
 	{
@@ -50,6 +54,11 @@ public class GameInstance : MonoBehaviour
 				var files = System.IO.Directory.GetFiles(DOWNLOADDIR);
 				foreach(var f in files)
 				{
+					if (f.EndsWith("reference.txt"))
+					{
+						referencePath = f;
+						continue;
+					}
 					if (f.EndsWith(".txt") || f.EndsWith(".json") || f.EndsWith(".xml"))
 						validFiles.Add(f);
 				}
@@ -110,6 +119,7 @@ public class GameInstance : MonoBehaviour
 		Roleplay.SetVisible(false);
 		Header.SetVisible(false);
 		Skills.SetVisible(false);
+		Reference.SetVisible(false);
 
 		MainMenu.SetVisible(true);
 		MainMenu.DisplayCharacterList();
@@ -139,6 +149,17 @@ public class GameInstance : MonoBehaviour
 		GameStateChangedEvent(newGameState);
 	}
 
+	public List<ReferenceData> GetReferenceData()
+	{
+		if (referenceData == null && !string.IsNullOrEmpty(referencePath))
+		{
+			//try to load reference.json if the file exists
+			string rawData = System.IO.File.ReadAllText(referencePath);
+			referenceData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ReferenceData>>(rawData);	
+		}
+		return referenceData;
+	}
+
 	public void Button_SetScreen(string name)
 	{
 		if (LoadedCharacterData != null)
@@ -148,6 +169,7 @@ public class GameInstance : MonoBehaviour
 		Roleplay.SetVisible(false);
 		Items.SetVisible(false);
 		Skills.SetVisible(false);
+		Reference.SetVisible(false);
 
 		switch(name)
 		{
@@ -155,6 +177,7 @@ public class GameInstance : MonoBehaviour
 			case "roleplay":Roleplay.SetVisible(true);break;
 			case "items":Items.SetVisible(true);break;
 			case "skills":Skills.SetVisible(true);break;
+			case "reference":Reference.SetVisible(true);break;
 		}
 	}
 }

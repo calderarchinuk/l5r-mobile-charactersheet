@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuCanvas : CanvasBase
 {
 	public GameObject CharacterPrefab;
 	public Transform CharacterListRoot;
+	public TMP_InputField DownloadInputField;
 
 	public override void GameInstance_OnGameStateChanged (GameState state)
 	{
