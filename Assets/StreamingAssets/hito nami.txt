@@ -1,0 +1,236 @@
+{
+  "Name": "hito nami",
+  "Glory": 0,
+  "Honor": 0,
+  "Status": 0,
+  "Vigilance": 2,
+  "Focus": 1,
+  "AirRing": 3,
+  "EarthRing": 1,
+  "FireRing": 3,
+  "WaterRing": 4,
+  "VoidRing": 3,
+  "Endurance": 8,
+  "CurrentFatigue": 0,
+  "Composure": 8,
+  "CurrentStrife": 0,
+  "MaxVoid": 1,
+  "CurrentVoid": 0,
+  "Distinctions": [
+    {
+      "Name": "giri (duty)",
+      "Ring": 5,
+      "Description": "follow lord's orders"
+    },
+    {
+      "Name": "ninjo (desire)",
+      "Ring": 5,
+      "Description": "wants to rule the world"
+    },
+    {
+      "Name": "provocation",
+      "Ring": 2,
+      "Description": "likes to start fights. also likes to end fights. recover strife"
+    },
+    {
+      "Name": "blunt",
+      "Ring": 0,
+      "Description": "is blunt. reroll some dice"
+    }
+  ],
+  "Skills": [
+    {
+      "Group": "Artisan",
+      "Name": "Aesthetics",
+      "Level": 0
+    },
+    {
+      "Group": "Artisan",
+      "Name": "Composition",
+      "Level": 0
+    },
+    {
+      "Group": "Artisan",
+      "Name": "Design",
+      "Level": 0
+    },
+    {
+      "Group": "Artisan",
+      "Name": "Smithing",
+      "Level": 0
+    },
+    {
+      "Group": "Social",
+      "Name": "Command",
+      "Level": 0
+    },
+    {
+      "Group": "Social",
+      "Name": "Courtesy",
+      "Level": 0
+    },
+    {
+      "Group": "Social",
+      "Name": "Games",
+      "Level": 0
+    },
+    {
+      "Group": "Social",
+      "Name": "Performance",
+      "Level": 0
+    },
+    {
+      "Group": "Trade",
+      "Name": "Commerce",
+      "Level": 0
+    },
+    {
+      "Group": "Trade",
+      "Name": "Labor",
+      "Level": 0
+    },
+    {
+      "Group": "Trade",
+      "Name": "Seafaring",
+      "Level": 0
+    },
+    {
+      "Group": "Trade",
+      "Name": "Skulduggery",
+      "Level": 0
+    },
+    {
+      "Group": "Trade",
+      "Name": "Survival",
+      "Level": 0
+    },
+    {
+      "Group": "Martial",
+      "Name": "Fitness",
+      "Level": 0
+    },
+    {
+      "Group": "Martial",
+      "Name": "Melee",
+      "Level": 0
+    },
+    {
+      "Group": "Martial",
+      "Name": "Ranged",
+      "Level": 0
+    },
+    {
+      "Group": "Martial",
+      "Name": "Unarmed",
+      "Level": 0
+    },
+    {
+      "Group": "Martial",
+      "Name": "Meditation",
+      "Level": 0
+    },
+    {
+      "Group": "Martial",
+      "Name": "Tactics",
+      "Level": 0
+    },
+    {
+      "Group": "Scholar",
+      "Name": "Culture",
+      "Level": 0
+    },
+    {
+      "Group": "Scholar",
+      "Name": "Government",
+      "Level": 0
+    },
+    {
+      "Group": "Scholar",
+      "Name": "Medicine",
+      "Level": 0
+    },
+    {
+      "Group": "Scholar",
+      "Name": "Sentiment",
+      "Level": 0
+    },
+    {
+      "Group": "Scholar",
+      "Name": "Theology",
+      "Level": 0
+    }
+  ],
+  "Techniques": [
+    {
+      "Name": "school ability name",
+      "Activation": "for each $strife up to school rank, add a kept $opportunity",
+      "Effect": "",
+      "Opportunity": "",
+      "Ring": 5
+    },
+    {
+      "Name": "fire technique name",
+      "Activation": "some activation rules",
+      "Effect": "some effect notes",
+      "Opportunity": "$fire$opportunity: example opportunity",
+      "Ring": 2
+    },
+    {
+      "Name": "water technique name",
+      "Activation": "some activation rules",
+      "Effect": "some effect notes",
+      "Opportunity": "$water$opportunity+: this is an opportunity",
+      "Ring": 3
+    },
+    {
+      "Name": "void technique name",
+      "Activation": "some activation rules",
+      "Effect": "",
+      "Opportunity": "$opportunity$opportunity: this is an opportunity",
+      "Ring": 4
+    }
+  ],
+  "Armor": [
+    {
+      "Name": "leather",
+      "Defense": 1,
+      "Keywords": [
+        "durable"
+      ]
+    },
+    {
+      "Name": "plate",
+      "Defense": 5,
+      "Keywords": [
+        "heavy",
+        "wargear"
+      ]
+    }
+  ],
+  "Weapons": [
+    {
+      "Name": "sword",
+      "Damage": 2,
+      "Deadliness": "5/7",
+      "Range": "1",
+      "Grips": "1/2",
+      "Keywords": [
+        "razor edged",
+        "fashionable",
+        "damaged"
+      ]
+    },
+    {
+      "Name": "bow",
+      "Damage": 1,
+      "Deadliness": "3",
+      "Range": "2-5",
+      "Grips": "2",
+      "Keywords": []
+    }
+  ],
+  "CurrentKoku": 1,
+  "CurrentBu": 4,
+  "CurrentZeni": 5,
+  "OtherItems": "a long rope\nhopes and dreams\nfsteak"
+}

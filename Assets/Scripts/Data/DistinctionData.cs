@@ -19,14 +19,14 @@ public enum DistinctionType
 public class DistinctionData 
 {
 	public string Name;
-	public DistinctionType Type;
+	//public DistinctionType Type;
 	public Ring Ring;
 	public string Description;
-	public string Book;
+	//public string Book;
 
 	public DistinctionData(string name, Ring ring, string description, DistinctionType type)
 	{
-		Type = type;
+		//Type = type;
 		Ring = ring;
 		Description = description;
 		Name = name;

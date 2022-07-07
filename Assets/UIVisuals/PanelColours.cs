@@ -11,11 +11,8 @@ public class PanelColours : ScriptableObject
 	public Color Techniques;
 	public Color Roleplay;
 	public Color Skills;
-
-	public Color ItemsWeapons;
-	public Color ItemsArmour;
-	public Color ItemsOther;
-	public Color ItemsBackground;
+	public Color Items;
+	public Color Reference;
 
 	public Color Expandable;
 

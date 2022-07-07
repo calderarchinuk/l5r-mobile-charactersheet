@@ -17,10 +17,8 @@ MonoBehaviour:
   Techniques: {r: 0.14901961, g: 0.20392159, b: 0.25882354, a: 1}
   Roleplay: {r: 0.14901961, g: 0.20392159, b: 0.25882354, a: 1}
   Skills: {r: 0.14726165, g: 0.203988, b: 0.2588235, a: 1}
-  ItemsWeapons: {r: 0.25882354, g: 0.1764706, b: 0.1764706, a: 1}
-  ItemsArmour: {r: 0.2588235, g: 0.1758215, b: 0.1758215, a: 1}
-  ItemsOther: {r: 0.25882354, g: 0.1764706, b: 0.1764706, a: 1}
-  ItemsBackground: {r: 0, g: 0, b: 0, a: 1}
-  Expandable: {r: 0, g: 0, b: 0, a: 0}
-  Text: {r: 0, g: 0, b: 0, a: 0}
-  ExpandableText: {r: 0, g: 0, b: 0, a: 0}
+  Items: {r: 0.14901961, g: 0.20392159, b: 0.25882354, a: 0}
+  Reference: {r: 0.14901961, g: 0.20392159, b: 0.25882354, a: 1}
+  Expandable: {r: 1, g: 1, b: 1, a: 1}
+  Text: {r: 1, g: 1, b: 1, a: 1}
+  ExpandableText: {r: 0, g: 0, b: 0, a: 1}

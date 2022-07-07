@@ -8,10 +8,10 @@ using UnityEngine;
 public class TechniqueData
 {
 	///show display the 'effect' string
-	public bool ActionTechnique;
+	//public bool ActionTechnique;
 	public string Name;
-	public string Type; //kata, shuji, ritual, nijitsu, 
-	public string Book; //where to find this source + page
+	//public string Type; //kata, shuji, ritual, nijitsu, 
+	//public string Book; //where to find this source + page
 
 	public string Activation; //check for actions, condition for opportunity
 	public string Effect; //text for actions

@@ -6,19 +6,23 @@ using TMPro;
 public class ProjectUtilities : MonoBehaviour
 {
 	public TMP_SpriteAsset spriteAsset;
+	public PanelColours colours;
 
 	public Sprite[] ringSprites;
 
 	static ProjectUtilities instance;
-	void Start ()
+	void Awake ()
 	{
 		instance = this;
 	}
 
+	public static PanelColours GetPanelColours()
+	{
+		return instance.colours;
+	}
+
 	public static string ParseText(string inText)
 	{
-		//replace $earth, $opportunity, $strife, etc with <sprite=2> as necessary
-
 		inText = inText.Replace("$air","<sprite=3>");
 		inText = inText.Replace("$earth","<sprite=0>");
 		inText = inText.Replace("$fire","<sprite=1>");

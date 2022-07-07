@@ -10,6 +10,8 @@ public class MainMenuCanvas : CanvasBase
 	public Transform CharacterListRoot;
 	public TMP_InputField DownloadInputField;
 	public TextMeshProUGUI debuggui;
+	public GameObject PathButton;
+	public GameObject Particles;
 
 	public override void GameInstance_OnGameStateChanged (GameState state)
 	{
@@ -24,6 +26,12 @@ public class MainMenuCanvas : CanvasBase
 		}
 	}
 
+	public override void SetVisible (bool visible)
+	{
+		base.SetVisible (visible);
+		Particles.SetActive(visible);
+	}
+
 	public void Initialize()
 	{
 		//get path from preferences (if it exists)
@@ -31,10 +39,18 @@ public class MainMenuCanvas : CanvasBase
 		{
 			var savedPath = PlayerPrefs.GetString("characterpath","/sdcard/download/L5R/");
 			GameInstance.Instance.SetPath(savedPath);
+			PathButton.SetActive(true);
+			DownloadInputField.gameObject.SetActive(false);
 		}
 
 		debuggui.text = "";
 		DownloadInputField.text = GameInstance.Instance.GetPath();
+	}
+
+	public void Button_OpenPathInputField()
+	{
+		PathButton.SetActive(false);
+		DownloadInputField.gameObject.SetActive(true);
 	}
 
 	public void Button_UpdatePath(string path)

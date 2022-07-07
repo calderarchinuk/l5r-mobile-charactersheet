@@ -5,24 +5,21 @@ using UnityEditor;
 
 public static class ProjectMenuItems
 {
-	//[MenuItem("Tools/Debug New Character Json")]
+	[MenuItem("Tools/Debug New Character Json")]
 	public static void NewCharacterJson()
 	{
-		var debugPath = Application.streamingAssetsPath+"/editor_test.txt";
-
 		var characterData = new CharacterData();
-		characterData.Name = "name";
+		characterData.Name = "hito nami";
 		characterData.AirRing = Random.Range(1,5);
 		characterData.EarthRing = Random.Range(1,5);
 		characterData.FireRing = Random.Range(1,5);
 		characterData.WaterRing = Random.Range(1,5);
 		characterData.VoidRing = Random.Range(1,5);
-		characterData.MaxVoid = 2;
-		characterData.Endurance = 14;
-		characterData.Composure = 14;
-		characterData.Vigilance = 1;
+		characterData.MaxVoid = 1;
+		characterData.Endurance = 8;
+		characterData.Composure = 8;
+		characterData.Vigilance = 2;
 		characterData.Focus = 1;
-
 
 		characterData.Skills.Add(new SkillData("Aesthetics","Artisan",0));
 		characterData.Skills.Add(new SkillData("Composition","Artisan",0));
@@ -53,20 +50,21 @@ public static class ProjectMenuItems
 		characterData.Skills.Add(new SkillData("Sentiment","Scholar",0));
 		characterData.Skills.Add(new SkillData("Theology","Scholar",0));
 
+		characterData.Techniques.Add(new TechniqueData("school ability name","for each $strife up to school rank, add a kept $opportunity","","",Ring.None));
+		characterData.Techniques.Add(new TechniqueData("fire technique name","some activation rules","some effect notes","$fire$opportunity: example opportunity",Ring.Fire));
+		characterData.Techniques.Add(new TechniqueData("water technique name","some activation rules","some effect notes","$water$opportunity+: this is an opportunity",Ring.Water));
+		characterData.Techniques.Add(new TechniqueData("void technique name","some activation rules","","$opportunity$opportunity: this is an opportunity",Ring.Void));
 
-		characterData.Techniques.Add(new TechniqueData("technique name","my activation text","some effect notes or whatever","this is an opportunity",Ring.Void));
-		characterData.Techniques.Add(new TechniqueData("technique name","my activation text","some effect notes or whatever","this is an opportunity",Ring.Void));
+		characterData.Distinctions.Add(new DistinctionData("giri (duty)",Ring.None,"follow lord's orders",DistinctionType.GiriDuty));
+		characterData.Distinctions.Add(new DistinctionData("ninjo (desire)",Ring.None,"wants to rule the world",DistinctionType.NinjoDesire));
+		characterData.Distinctions.Add(new DistinctionData("provocation",Ring.Fire,"likes to start fights. also likes to end fights. recover strife",DistinctionType.Passion));
+		characterData.Distinctions.Add(new DistinctionData("blunt",Ring.Air,"is blunt. reroll some dice",DistinctionType.Disadvantage));
 
-		characterData.Distinctions.Add(new DistinctionData("giri",Ring.None,"follow lord's orders",DistinctionType.GiriDuty));
-		characterData.Distinctions.Add(new DistinctionData("ninjo",Ring.None,"wants to rule the world",DistinctionType.NinjoDesire));
-		characterData.Distinctions.Add(new DistinctionData("provocation",Ring.Fire,"likes to start fights. also likes to end fights. recover 3 strife",DistinctionType.Passion));
-		characterData.Distinctions.Add(new DistinctionData("blunt",Ring.Air,"is blunt",DistinctionType.Disadvantage));
+		characterData.Armor.Add(new ArmorData("leather",1,new List<string>(){"durable"}));
+		characterData.Armor.Add(new ArmorData("plate",5,new List<string>(){"heavy","wargear"}));
 
-		//characterData.d.Add(new TechniqueData("lord akodo's roar","my activation text","some effect notes or whatever","this is an opportunity",Ring.Void));
-		characterData.Armor.Add(new ArmorData("leather",1,new List<string>(){"durable","sad"}));
-		characterData.Armor.Add(new ArmorData("plate",5,new List<string>(){"heavy","smelly","wargear"}));
-
-		characterData.Weapons.Add(new WeaponData("katana",10,"5/7","1","1/2",new List<string>(){"razor edged","fashionable","damaged"}));
+		characterData.Weapons.Add(new WeaponData("sword",2,"5/7","1","1/2",new List<string>(){"razor edged","fashionable","damaged"}));
+		characterData.Weapons.Add(new WeaponData("bow",1,"3","2-5","2",new List<string>(){}));
 
 		characterData.CurrentKoku = 1;
 		characterData.CurrentBu = 4;
@@ -76,7 +74,9 @@ public static class ProjectMenuItems
 		var contents = characterData.Serialize();
 		Debug.Log(contents);
 
+		var debugPath = Application.streamingAssetsPath+"/"+characterData.Name+".txt";
 		Debug.Log(characterData.Name + " wrote to path "+ debugPath);
 		System.IO.File.WriteAllText(debugPath,contents);
+		AssetDatabase.Refresh();
 	}
 }

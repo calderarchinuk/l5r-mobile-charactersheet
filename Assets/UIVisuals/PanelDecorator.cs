@@ -5,33 +5,29 @@ using UnityEngine.UI;
 
 public enum DecoratorType
 {
-	MainMenu,
-	Header,
-	Glory,
-	Techniques,
-	Roleplay,
-	Skills,
+	MainMenu = 0,
+	Header = 1,
+	Glory = 2,
+	Techniques = 3,
+	Roleplay = 4,
+	Skills = 5,
+	Reference = 6,
+	Items = 7,
 
-	ItemsWeapons,
-	ItemsArmour,
-	ItemsOther,
-	ItemsBackground,
-
-	Expandable, //distinctions, techniques, text areas. buttons? white by default
-
-	Text, //name, other text. white by default
-	ExpandableText, //text on expandable thigns. black by default
+	Expandable = 8, //distinctions, techniques, text areas. buttons? white by default
+	Text = 9, //name, other text. white by default
+	ExpandableText = 10, //text on expandable thigns. black by default
 }
 
 public class PanelDecorator : MonoBehaviour
 {
-	public PanelColours colours;
 	public DecoratorType type;
 	void Start()
 	{
-		//TODO assign all text to some value
+		var colours = ProjectUtilities.GetPanelColours();
 
 		var image = GetComponent<Image>();
+		var text = GetComponent<TMPro.TextMeshProUGUI>();
 		switch (type) {
 		case DecoratorType.MainMenu:
 			image.color = colours.MainMenu;
@@ -43,32 +39,28 @@ public class PanelDecorator : MonoBehaviour
 			image.color = colours.Glory;
 			break;
 		case DecoratorType.Techniques:
-			image.color = colours.Text;
+			image.color = colours.Techniques;
 			break;
 		case DecoratorType.Roleplay:
 			image.color = colours.Roleplay;
 			break;
+		case DecoratorType.Reference:
+			image.color = colours.Reference;
+			break;
 		case DecoratorType.Skills:
 			image.color = colours.Skills;
 			break;
-		case DecoratorType.ItemsWeapons:
-			image.color = colours.ItemsWeapons;
-			break;
-		case DecoratorType.ItemsArmour:
-			image.color = colours.ItemsArmour;
-			break;
-		case DecoratorType.ItemsOther:
-			image.color = colours.ItemsOther;
-			break;
-		case DecoratorType.ItemsBackground:
-			image.color = colours.ItemsBackground;
+		case DecoratorType.Items:
+			image.color = colours.Items;
 			break;
 		case DecoratorType.Expandable:
-			
+			image.color = colours.Expandable;
 			break;
 		case DecoratorType.Text:
+			text.color = colours.Text;
 			break;
 		case DecoratorType.ExpandableText:
+			text.color = colours.ExpandableText;
 			break;
 		default:
 			throw new System.ArgumentOutOfRangeException ();

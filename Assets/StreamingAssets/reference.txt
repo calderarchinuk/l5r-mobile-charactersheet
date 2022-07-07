@@ -1,0 +1,23 @@
+[
+    {
+      "Name": "Note 1",
+      "Ring": 0,
+      "Description": "this reference sheet is independent of character data. this is for rules to quickly reference without checking the book"
+    },
+    {
+      "Name": "Note 2",
+      "Ring": 1,
+      "Description": "$critical $success $none $fire $opportunity and other icons can be added to these entries as well"
+    },
+    {
+      "Name": "Note 3",
+      "Ring": 5,
+      "Description": "the \"Ring\" field in these technique, distinction and reference entries uses
+\n0 = air
+\n1 = earth
+\n2 = fire
+\n3 = water
+\n4 = void
+\n5 = none (displayed as success)"
+    }
+  ]
