@@ -63,7 +63,7 @@ public class GameInstance : MonoBehaviour
 				var files = System.IO.Directory.GetFiles(DOWNLOADDIR);
 				foreach(var f in files)
 				{
-					if (f.EndsWith("reference.txt"))
+					if (f.EndsWith("reference.txt") || f.EndsWith("references.txt") || f.EndsWith("reference.json") || f.EndsWith("references.json"))
 					{
 						referencePath = f;
 						continue;
