@@ -41,6 +41,8 @@ public class GameInstance : MonoBehaviour
 
 	public void SetPath(string path)
 	{
+		if (!path.EndsWith("/"))
+			path+="/";
 		DOWNLOADDIR = path;
 	}
 	public string GetPath()
@@ -189,5 +191,10 @@ public class GameInstance : MonoBehaviour
 			case "skills":Skills.SetVisible(true);break;
 			case "reference":Reference.SetVisible(true);break;
 		}
+	}
+
+	public static void Save()
+	{
+		WriteToDisk(GameInstance.Instance.LoadedCharacterData);
 	}
 }

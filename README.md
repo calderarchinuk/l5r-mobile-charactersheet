@@ -23,3 +23,13 @@ Icons can be inlined into text for distinctions and techniques. These include:
 * damage/destroy equipment, damage rings
 * build some external editor to create/update character data files
 * consider some internal editor? personally don't want to edit big +technical text files on a phone. pastebin, gist? load character from url?
+* consider experience spend tracker page (school skills/abilities, out of school spends)
+* consider 'combat' page to quickly track status effects, list actions
+
+## Version 1.0 changes
+* add version number
+* fix directory save sometimes not including final '/'
+* aggressively save (after any text field has changed)
+* add xp fields to item canvas
+* larger buttons
+* skills canvas centered

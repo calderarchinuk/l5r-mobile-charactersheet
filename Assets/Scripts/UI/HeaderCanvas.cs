@@ -73,13 +73,16 @@ public class HeaderCanvas : CanvasBase
 	public void SetFatigue(string str)
 	{
 		GameInstance.Instance.LoadedCharacterData.CurrentFatigue = int.Parse(str);
+		GameInstance.Save();
 	}
 	public void SetStrife(string str)
 	{
 		GameInstance.Instance.LoadedCharacterData.CurrentStrife = int.Parse(str);
+		GameInstance.Save();
 	}
 	public void SetVoid(string str)
 	{
 		GameInstance.Instance.LoadedCharacterData.CurrentVoid = int.Parse(str);
+		GameInstance.Save();
 	}
 }

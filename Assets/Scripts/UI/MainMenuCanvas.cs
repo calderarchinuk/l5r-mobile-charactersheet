@@ -63,6 +63,9 @@ public class MainMenuCanvas : CanvasBase
 			return;
 		}
 
+		if (!path.EndsWith("/"))
+			path+="/";
+
 		GameInstance.Instance.SetPath(path);
 
 		var files = GameInstance.Instance.GetFiles();

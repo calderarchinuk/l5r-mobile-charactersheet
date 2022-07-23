@@ -40,6 +40,10 @@ public class CharacterData
 	public int CurrentZeni;
 	public string OtherItems;
 
+	public int FreeXP;
+	public int SpentXP;
+	public int TotalXP;
+
 	public string Serialize ()
 	{
 		string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(this,Newtonsoft.Json.Formatting.Indented);
