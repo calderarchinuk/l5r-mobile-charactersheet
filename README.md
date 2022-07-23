@@ -33,3 +33,7 @@ Icons can be inlined into text for distinctions and techniques. These include:
 * add xp fields to item canvas
 * larger buttons
 * skills canvas centered
+
+## Version 1.1 changes
+* UX for dice
+* fade skills with no levels

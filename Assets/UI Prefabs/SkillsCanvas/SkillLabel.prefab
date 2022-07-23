@@ -256,7 +256,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ad434fc92ba6c44edbf2296f99018ce6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a50663dffc0564787a3db03156084fe7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -504,6 +504,7 @@ MonoBehaviour:
   SkillName: {fileID: 114375374324951396}
   SkillLevel: {fileID: 114080867200953308}
   SkillGroup: {fileID: 114473158370450540}
+  Circle: {fileID: 114342542337215974}
 --- !u!222 &222059095431334438
 CanvasRenderer:
   m_ObjectHideFlags: 1
