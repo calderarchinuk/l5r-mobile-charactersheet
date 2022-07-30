@@ -7,7 +7,9 @@ using UnityEngine;
 public class SkillCanvas : CanvasBase
 {
 	public GameObject SkillPrefab;
-	public Transform SkillRoot;
+	public GameObject SkillSpacerPrefab;
+	public Transform SkillRootLeft; //art, social, trade skills
+	public Transform SkillRootRight; //martial, scholar skills
 
 	public override void SetVisible (bool visible)
 	{
@@ -21,12 +23,23 @@ public class SkillCanvas : CanvasBase
 	{
 		var skills = GameInstance.Instance.LoadedCharacterData.Skills;
 
-		SkillRoot.DestroyChildren();
+		SkillRootLeft.DestroyChildren();
+		SkillRootRight.DestroyChildren();
 
-		foreach(var v in skills)
+		for (int i = 0;i<13;i++)
 		{
-			var go = Instantiate(SkillPrefab,SkillRoot);
-			go.GetComponent<SkillLabel>().SetSkillLabel(v);
+			var go = Instantiate(SkillPrefab,SkillRootLeft);
+			go.GetComponent<SkillLabel>().SetSkillLabel(skills[i]);
+			if (i == 3 || i == 7)
+				Instantiate(SkillSpacerPrefab,SkillRootLeft);
+		}
+
+		for (int i = 13;i<skills.Count;i++)
+		{
+			var go = Instantiate(SkillPrefab,SkillRootRight);
+			go.GetComponent<SkillLabel>().SetSkillLabel(skills[i]);
+			if (i == 18)
+				Instantiate(SkillSpacerPrefab,SkillRootRight);
 		}
 	}
 }

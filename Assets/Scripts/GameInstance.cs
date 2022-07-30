@@ -54,10 +54,6 @@ public class GameInstance : MonoBehaviour
 	{
 		try
 		{
-			#if UNITY_EDITOR
-			DOWNLOADDIR = Application.streamingAssetsPath+"/";
-			#endif
-
 			if (Directory.Exists(DOWNLOADDIR))
 			{
 				//only include files that are .txt or .json or .xml

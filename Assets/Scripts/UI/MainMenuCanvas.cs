@@ -34,6 +34,10 @@ public class MainMenuCanvas : CanvasBase
 
 	public void Initialize()
 	{
+		#if UNITY_EDITOR
+		GameInstance.Instance.SetPath(Application.streamingAssetsPath+"/"); 
+		#endif
+
 		//get path from preferences (if it exists)
 		if (PlayerPrefs.HasKey("characterpath"))
 		{
@@ -68,10 +72,11 @@ public class MainMenuCanvas : CanvasBase
 
 		GameInstance.Instance.SetPath(path);
 
+		debuggui.text = "";
 		var files = GameInstance.Instance.GetFiles();
 		if (files.Length == 0)
 		{
-			debuggui.text = "No character data at path";
+			debuggui.text += "\nNo character data at path:\n" + GameInstance.Instance.GetPath();
 		}
 		else
 		{
